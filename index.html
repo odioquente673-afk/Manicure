@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Studio de Unhas · Agendamento online</title>
+<meta name="description" content="Manicure, gel, fibra de vidro e alongamento. Agende seu horário online e confirme pelo WhatsApp.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gilda+Display&family=Nunito+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: { extend: {
+    colors: { ink:'#3b3236', stone:'#f6f2ef', sand:'#e9e1db', blush:'#f2d4d4', rose:'#c98a93', gold:'#b8924f', goldsoft:'#e8d6b0' },
+    fontFamily: { display:['"Gilda Display"','Georgia','serif'], body:['"Nunito Sans"','system-ui','sans-serif'] }
+  } }
+}
+</script>
+<style>
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Nunito Sans', system-ui, sans-serif; background:#f6f2ef; color:#3b3236; }
+  .font-display { font-weight:400 !important; letter-spacing:.005em; }
+  .soft-bg { background: radial-gradient(60% 70% at 85% 20%, rgba(242,212,212,.45), transparent 70%), radial-gradient(50% 60% at 5% 90%, rgba(232,214,176,.28), transparent 70%); }
+  .nail { border-radius: 999px 999px 40% 40% / 70% 70% 30% 30%; }
+  .chip:focus-visible, button:focus-visible, input:focus-visible, a:focus-visible { outline: 2px solid #b8924f; outline-offset: 2px; }
+  .chip[aria-pressed="true"] { background:linear-gradient(135deg,#3b3236,#6a5560); color:#fff; border-color:#3b3236; }
+  .gloss { position:relative; }
+  .gloss::after { content:""; position:absolute; top:9%; left:20%; width:20%; height:42%; border-radius:999px; background:linear-gradient(rgba(255,255,255,.8),rgba(255,255,255,0)); }
+  .svc[aria-pressed="true"] { border-color:#b8924f; box-shadow: 0 0 0 2px #b8924f inset; background:#fffaf2; }
+  .chip:disabled { opacity:.35; cursor:not-allowed; text-decoration: line-through; }
+  .panel { animation: show .25s ease; }
+  @keyframes show { from { opacity:0; transform: translateY(6px);} to {opacity:1; transform:none;} }
+  @media (prefers-reduced-motion: reduce) { html{scroll-behavior:auto} .panel{animation:none} }
+  .scroll-x { scrollbar-width: thin; }
+</style>
+</head>
+<body class="antialiased">
+
+<!-- Cabeçalho -->
+<header class="sticky top-0 z-40 bg-stone/90 backdrop-blur border-b border-sand">
+  <div class="max-w-6xl mx-auto px-5 h-16 flex items-center justify-between">
+    <a href="#inicio" class="flex items-center gap-3" aria-label="Studio de Unhas – início">
+      <span class="w-9 h-11 nail bg-gradient-to-b from-blush to-rose/70 grid place-items-center text-white text-xs shadow-sm"><i class="fa-solid fa-gem"></i></span>
+      <span class="font-display text-2xl font-semibold leading-none">Studio de Unhas</span>
+    </a>
+    <nav class="hidden md:flex items-center gap-8 text-sm text-ink/80">
+      <a href="#sobre" class="hover:text-gold">O estúdio</a>
+      <a href="#servicos" class="hover:text-gold">Serviços</a>
+      <a href="#agendar" class="hover:text-gold">Agendar</a>
+    </nav>
+    <a href="#agendar" class="hidden sm:inline-flex items-center gap-2 bg-ink text-white text-sm font-medium rounded-full px-5 py-2.5 hover:bg-gold transition-colors">
+      <i class="fa-regular fa-calendar-check"></i> Agendar horário
+    </a>
+  </div>
+</header>
+
+<!-- Botão flutuante -->
+<a href="#agendar" class="fixed z-50 bottom-5 right-5 inline-flex items-center gap-2 bg-ink/90 text-white text-sm font-medium rounded-full pl-4 pr-5 py-3 shadow-lg hover:bg-gold transition-colors" aria-label="Agendar horário">
+  <i class="fa-regular fa-calendar-check"></i><span>Agendar</span>
+</a>
+
+<main id="inicio">
+<!-- Apresentação -->
+<section class="relative overflow-hidden soft-bg">
+  <div class="max-w-6xl mx-auto px-5 pt-14 pb-16 md:pt-24 md:pb-24 grid md:grid-cols-12 gap-10 items-center">
+    <div class="md:col-span-7">
+      <p class="inline-flex items-center gap-2 rounded-full bg-white/70 border border-sand px-4 py-1.5 text-sm text-ink/70 mb-6"><i class="fa-solid fa-gem text-gold text-xs"></i>Manicure, gel e fibra de vidro</p>
+      <h1 class="font-display text-5xl sm:text-6xl lg:text-7xl leading-[1.05]">Unhas bem cuidadas, sem pressa.</h1>
+      <p class="mt-6 text-lg text-ink/75 max-w-xl leading-relaxed">Um cantinho tranquilo para cuidar das suas unhas, com material esterilizado, esmaltes de qualidade e atendimento individual. Escolha o dia e o horário e confirme tudo pelo WhatsApp.</p>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a href="#agendar" class="inline-flex items-center gap-2 bg-gradient-to-r from-ink to-[#6a5560] text-white font-medium rounded-full px-7 py-3.5 shadow-lg shadow-ink/20 hover:from-gold hover:to-gold transition-colors"><i class="fa-regular fa-calendar-check"></i> Agendar agora</a>
+        <a href="#servicos" class="inline-flex items-center gap-2 border border-ink/25 rounded-full px-7 py-3.5 font-medium hover:border-gold hover:text-gold transition-colors">Ver serviços e preços</a>
+      </div>
+      <ul class="mt-10 flex flex-wrap gap-x-6 gap-y-3 text-sm text-ink/70">
+        <li><i class="fa-solid fa-circle-check text-gold mr-2"></i>Material esterilizado</li>
+        <li><i class="fa-solid fa-circle-check text-gold mr-2"></i>Atendimento individual</li>
+        <li><i class="fa-solid fa-circle-check text-gold mr-2"></i>Confirmação pelo WhatsApp</li>
+      </ul>
+    </div>
+    <!-- Paleta de esmaltes -->
+    <div class="md:col-span-5" aria-hidden="true">
+      <div class="relative mx-auto w-72 h-72 sm:w-80 sm:h-80">
+        <div class="absolute inset-0 rounded-full bg-gradient-to-br from-blush/70 via-white to-goldsoft/60 shadow-inner"></div>
+        <div class="absolute inset-3 rounded-full border border-gold/30"></div>
+        <div class="absolute inset-0 flex items-end justify-center gap-2.5 pb-14">
+        <span class="nail gloss w-11 sm:w-12 h-28 bg-gradient-to-b from-white to-blush shadow-md" style="transform:rotate(-14deg);transform-origin:bottom center"></span>
+        <span class="nail gloss w-11 sm:w-12 h-36 bg-gradient-to-b from-blush to-rose shadow-md" style="transform:rotate(-7deg);transform-origin:bottom center"></span>
+        <span class="nail gloss w-11 sm:w-12 h-44 bg-gradient-to-b from-goldsoft to-gold shadow-md" style="transform:rotate(0deg);transform-origin:bottom center"></span>
+        <span class="nail gloss w-11 sm:w-12 h-36 bg-gradient-to-b from-[#f3e3e3] to-[#d9a8b0] shadow-md" style="transform:rotate(7deg);transform-origin:bottom center"></span>
+        <span class="nail gloss w-11 sm:w-12 h-28 bg-gradient-to-b from-sand to-[#cdbfb5] shadow-md" style="transform:rotate(14deg);transform-origin:bottom center"></span>
+        </div>
+        <div class="absolute -bottom-4 -left-2 sm:-left-8 bg-white rounded-2xl shadow-lg shadow-ink/10 border border-sand px-4 py-3 flex items-center gap-3">
+          <span class="w-9 h-9 rounded-full bg-gradient-to-br from-blush to-goldsoft grid place-items-center text-ink/80"><i class="fa-regular fa-calendar-check"></i></span>
+          <span class="text-sm leading-tight"><span class="block font-medium">Hora marcada</span><span class="text-ink/60">sem espera</span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="sobre" class="bg-white border-y border-sand">
+  <div class="max-w-6xl mx-auto px-5 py-14 grid md:grid-cols-3 gap-10">
+    <div>
+      <span class="w-11 h-11 rounded-full bg-gradient-to-br from-blush to-goldsoft/70 text-ink/80 grid place-items-center mb-4"><i class="fa-solid fa-hand-sparkles"></i></span>
+      <h2 class="font-display text-3xl font-semibold mb-3">Manicure e unhas em gel</h2>
+      <p class="text-ink/75 leading-relaxed">Do cuidado básico ao banho de gel, alongamento em gel e fibra de vidro, cada atendimento é feito com calma e atenção aos detalhes, respeitando o formato e a saúde das suas unhas.</p>
+    </div>
+    <div>
+      <span class="w-11 h-11 rounded-full bg-gradient-to-br from-blush to-goldsoft/70 text-ink/80 grid place-items-center mb-4"><i class="fa-solid fa-mug-hot"></i></span>
+      <h2 class="font-display text-3xl font-semibold mb-3">Ambiente aconchegante</h2>
+      <p class="text-ink/75 leading-relaxed">Poltronas confortáveis, música suave e um cafezinho enquanto você relaxa. Materiais esterilizados e higiene em primeiro lugar.</p>
+    </div>
+    <div>
+      <span class="w-11 h-11 rounded-full bg-gradient-to-br from-blush to-goldsoft/70 text-ink/80 grid place-items-center mb-4"><i class="fa-solid fa-clock"></i></span>
+      <h2 class="font-display text-3xl font-semibold mb-3">Horário de funcionamento</h2>
+      <ul class="text-ink/80 space-y-2">
+        <li class="flex justify-between border-b border-sand pb-2"><span>Segunda a sexta</span><span class="font-medium">09:00 às 19:00</span></li>
+        <li class="flex justify-between border-b border-sand pb-2"><span>Sábado</span><span class="font-medium">09:00 às 15:00</span></li>
+        <li class="flex justify-between"><span>Domingo</span><span class="text-ink/50">Fechado</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- Serviços -->
+<section id="servicos" class="max-w-6xl mx-auto px-5 py-16 md:py-24">
+  <div class="max-w-xl mb-10">
+    <h2 class="font-display text-4xl sm:text-5xl font-semibold">Serviços e preços</h2>
+    <span class="block w-14 h-px bg-gold mt-5"></span>
+    <p class="mt-3 text-ink/70">Valores iniciais. Ajustes de design e decoração podem ser combinados no atendimento.</p>
+  </div>
+  <div id="serviceCards" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5"></div>
+</section>
+
+<!-- Agendamento -->
+<section id="agendar" class="bg-gradient-to-b from-white to-blush/25 border-t border-sand scroll-mt-16">
+  <div class="max-w-3xl mx-auto px-5 py-16 md:py-24">
+    <div class="text-center mb-10">
+      <h2 class="font-display text-4xl sm:text-5xl font-semibold">Agende seu horário</h2>
+      <span class="block w-14 h-px bg-gold mt-5 mx-auto"></span>
+      <p class="mt-3 text-ink/70">Em quatro passos rápidos. A confirmação final é feita pelo WhatsApp.</p>
+    </div>
+
+    <!-- Progresso -->
+    <ol id="progress" class="flex items-center justify-between mb-8 text-sm" aria-label="Etapas do agendamento"></ol>
+
+    <div class="bg-stone rounded-3xl border border-sand p-5 sm:p-8 min-h-[22rem] shadow-xl shadow-ink/5">
+      <!-- Passo 1 -->
+      <div data-step="1" class="panel">
+        <h3 class="font-display text-2xl font-semibold mb-1">Qual dia fica melhor para você?</h3>
+        <p class="text-sm text-ink/60 mb-5">Atendemos de segunda a sábado.</p>
+        <div id="dates" class="grid grid-cols-3 sm:grid-cols-4 gap-3"></div>
+      </div>
+      <!-- Passo 2 -->
+      <div data-step="2" class="panel hidden">
+        <h3 class="font-display text-2xl font-semibold mb-1">Escolha o horário</h3>
+        <p id="dateLabel" class="text-sm text-ink/60 mb-5"></p>
+        <div id="times" class="grid grid-cols-3 sm:grid-cols-4 gap-3"></div>
+      </div>
+      <!-- Passo 3 -->
+      <div data-step="3" class="panel hidden">
+        <h3 class="font-display text-2xl font-semibold mb-5">O que vamos fazer hoje?</h3>
+        <div id="services" class="grid gap-3"></div>
+      </div>
+      <!-- Passo 4 -->
+      <div data-step="4" class="panel hidden">
+        <h3 class="font-display text-2xl font-semibold mb-5">Seus dados</h3>
+        <div class="grid gap-4" novalidate>
+          <div>
+            <label for="name" class="block text-sm font-medium mb-1.5">Nome completo</label>
+            <input id="name" type="text" autocomplete="name" placeholder="Como podemos te chamar?" class="w-full rounded-xl border border-sand bg-white px-4 py-3 focus:border-gold">
+            <p id="nameErr" class="hidden text-sm text-red-700 mt-1.5">Informe seu nome (mínimo 3 letras).</p>
+          </div>
+          <div>
+            <label for="phone" class="block text-sm font-medium mb-1.5">WhatsApp</label>
+            <input id="phone" type="tel" inputmode="numeric" autocomplete="tel" placeholder="(11) 99999-9999" maxlength="15" class="w-full rounded-xl border border-sand bg-white px-4 py-3 focus:border-gold">
+            <p id="phoneErr" class="hidden text-sm text-red-700 mt-1.5">Informe um WhatsApp válido com DDD.</p>
+          </div>
+        </div>
+        <div id="summary" class="mt-6 rounded-2xl bg-white border border-sand p-5 text-sm space-y-2"></div>
+      </div>
+    </div>
+
+    <p id="stepErr" class="hidden mt-4 text-sm text-red-700 text-center" role="alert"></p>
+
+    <div class="mt-6 flex items-center justify-between gap-3">
+      <button id="backBtn" type="button" class="invisible inline-flex items-center gap-2 px-5 py-3 rounded-full border border-ink/25 font-medium hover:border-gold hover:text-gold"><i class="fa-solid fa-arrow-left"></i> Voltar</button>
+      <button id="nextBtn" type="button" class="inline-flex items-center gap-2 px-7 py-3 rounded-full bg-ink text-white font-medium hover:bg-gold transition-colors">Continuar <i class="fa-solid fa-arrow-right"></i></button>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="bg-ink text-white/80">
+  <div class="max-w-6xl mx-auto px-5 py-8 flex flex-col sm:flex-row items-center justify-between gap-2 text-sm">
+    <span class="font-display text-xl text-white">Studio de Unhas</span>
+    <span>© <span id="year"></span> Studio de Unhas. Todos os direitos reservados.</span>
+  </div>
+</footer>
+
+<script>
+/* ====== CONFIGURAÇÕES: edite aqui ====== */
+const WHATSAPP_NUMBER = "5511999999999"; // código do país + DDD + número, só dígitos
+const STUDIO_NAME = "Studio de Unhas";
+const DAYS_AHEAD = 21;                    // quantos dias à frente aparecem para agendar
+const SERVICES = [
+  { id:"manicure",  name:"Manicure simples",           price:35,  min:45,  icon:"fa-hand",          desc:"Cutilagem, lixamento e esmaltação tradicional." },
+  { id:"gel",       name:"Esmaltação em gel",          price:70,  min:60,  icon:"fa-droplet",       desc:"Brilho intenso e durabilidade de até 21 dias." },
+  { id:"banho",     name:"Banho de gel",               price:80,  min:75,  icon:"fa-hand-sparkles", desc:"Camada de gel sobre a unha natural para dar resistência e brilho." },
+  { id:"blindagem", name:"Blindagem",                  price:90,  min:90,  icon:"fa-shield-heart",  desc:"Camada de proteção que fortalece unhas fracas." },
+  { id:"alongamento", name:"Alongamento em gel",       price:180, min:150, icon:"fa-wand-magic-sparkles", desc:"Unhas mais longas e resistentes, no formato que você escolher." },
+  { id:"fibra",     name:"Alongamento em fibra de vidro", price:200, min:150, icon:"fa-feather",  desc:"Alongamento leve e natural, com fibra de vidro e acabamento em gel." }
+];
+// Horários por tipo de dia (0 = domingo ... 6 = sábado). Dia sem lista = fechado.
+const WEEKDAY_SLOTS = ["09:00","10:00","11:00","13:00","14:00","15:00","16:00","17:00","18:00"];
+const SATURDAY_SLOTS = ["09:00","10:00","11:00","12:00","13:00","14:00"];
+const SLOTS_BY_DAY = {0:[],1:WEEKDAY_SLOTS,2:WEEKDAY_SLOTS,3:WEEKDAY_SLOTS,4:WEEKDAY_SLOTS,5:WEEKDAY_SLOTS,6:SATURDAY_SLOTS};
+/* ======================================= */
+
+const $ = s => document.querySelector(s);
+const brl = v => v.toLocaleString("pt-BR",{style:"currency",currency:"BRL"});
+const state = { step:1, date:null, time:null, service:null };
+const stepNames = ["Data","Horário","Serviço","Dados"];
+const dur = m => m<60 ? m+" min" : Math.floor(m/60)+"h"+(m%60?String(m%60).padStart(2,"0"):"");
+const cap = s => s.charAt(0).toUpperCase()+s.slice(1);
+const fmtLong = d => cap(d.toLocaleDateString("pt-BR",{weekday:"long",day:"2-digit",month:"long"}));
+$("#year").textContent = new Date().getFullYear();
+
+/* Cartões de serviços */
+$("#serviceCards").innerHTML = SERVICES.map(s => `
+  <article class="bg-white rounded-3xl border border-sand p-6 flex flex-col shadow-[0_1px_3px_rgba(59,50,54,.05)] transition duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-ink/10 hover:border-goldsoft">
+    <span class="w-11 h-11 rounded-full bg-gradient-to-br from-blush to-goldsoft/70 text-ink/80 grid place-items-center mb-4"><i class="fa-solid ${s.icon}"></i></span>
+    <h3 class="font-display text-2xl font-semibold">${s.name}</h3>
+    <p class="text-ink/70 mt-1.5 flex-1 leading-relaxed">${s.desc}</p>
+    <div class="mt-5 pt-4 border-t border-sand flex items-end justify-between">
+      <span class="text-sm text-ink/60"><i class="fa-regular fa-clock mr-1.5"></i>${dur(s.min)}</span>
+      <span class="font-display text-2xl text-ink">${brl(s.price)}</span>
+    </div>
+  </article>`).join("");
+
+/* Passo 1: datas */
+function buildDates(){
+  const wrap = $("#dates"); wrap.innerHTML = "";
+  const today = new Date(); today.setHours(0,0,0,0);
+  for(let i=0;i<=DAYS_AHEAD;i++){
+    const d = new Date(today); d.setDate(today.getDate()+i);
+    const slots = availableSlots(d);
+    const b = document.createElement("button");
+    b.type="button"; b.disabled = slots.length===0;
+    b.className = "chip rounded-2xl border border-sand bg-white py-3 text-center transition-colors hover:border-gold";
+    b.setAttribute("aria-pressed","false");
+    b.innerHTML = `<span class="block text-xs opacity-70">${d.toLocaleDateString("pt-BR",{weekday:"short"}).replace(".","")}</span>
+      <span class="block font-display text-2xl font-semibold leading-tight">${d.getDate()}</span>
+      <span class="block text-xs opacity-70">${d.toLocaleDateString("pt-BR",{month:"short"}).replace(".","")}</span>`;
+    b.addEventListener("click",()=>{
+      state.date = d; state.time = null;
+      wrap.querySelectorAll("button").forEach(x=>x.setAttribute("aria-pressed","false"));
+      b.setAttribute("aria-pressed","true"); hideErr();
+    });
+    wrap.appendChild(b);
+  }
+}
+function availableSlots(d){
+  const all = SLOTS_BY_DAY[d.getDay()] || [];
+  const now = new Date();
+  if(d.toDateString() !== now.toDateString()) return all;
+  return all.filter(t => { const [h,m]=t.split(":").map(Number); const x=new Date(d); x.setHours(h,m,0,0); return x - now > 30*60000; });
+}
+
+/* Passo 2: horários */
+function buildTimes(){
+  const wrap = $("#times"); wrap.innerHTML = "";
+  $("#dateLabel").textContent = fmtLong(state.date);
+  const slots = availableSlots(state.date);
+  const list = SLOTS_BY_DAY[state.date.getDay()];
+  list.forEach(t=>{
+    const b = document.createElement("button");
+    b.type="button"; b.textContent=t; b.disabled = !slots.includes(t);
+    b.className = "chip rounded-xl border border-sand bg-white py-3 font-medium transition-colors hover:border-gold";
+    b.setAttribute("aria-pressed", String(state.time===t));
+    b.addEventListener("click",()=>{
+      state.time=t; wrap.querySelectorAll("button").forEach(x=>x.setAttribute("aria-pressed","false"));
+      b.setAttribute("aria-pressed","true"); hideErr();
+    });
+    wrap.appendChild(b);
+  });
+}
+
+/* Passo 3: serviços */
+function buildServices(){
+  const wrap = $("#services"); wrap.innerHTML = "";
+  SERVICES.forEach(s=>{
+    const b = document.createElement("button");
+    b.type="button";
+    b.className="svc w-full text-left flex items-center gap-4 rounded-2xl border border-sand bg-white p-4 hover:border-gold transition-colors";
+    b.setAttribute("aria-pressed", String(state.service?.id===s.id));
+    b.innerHTML = `<span class="w-10 h-10 shrink-0 rounded-full bg-blush/60 text-rose grid place-items-center"><i class="fa-solid ${s.icon}"></i></span>
+      <span class="flex-1"><span class="block font-medium">${s.name}</span><span class="block text-sm text-ink/60">${dur(s.min)}</span></span>
+      <span class="font-display text-xl text-ink">${brl(s.price)}</span>`;
+    b.addEventListener("click",()=>{
+      state.service=s; wrap.querySelectorAll("button").forEach(x=>x.setAttribute("aria-pressed","false"));
+      b.setAttribute("aria-pressed","true"); hideErr();
+    });
+    wrap.appendChild(b);
+  });
+}
+
+/* Passo 4: resumo + máscara do telefone */
+function buildSummary(){
+  $("#summary").innerHTML = `
+    <div class="flex justify-between gap-4"><span class="text-ink/60">Serviço</span><span class="font-medium text-right">${state.service.name} · ${brl(state.service.price)}</span></div>
+    <div class="flex justify-between gap-4"><span class="text-ink/60">Data</span><span class="font-medium text-right">${fmtLong(state.date)}</span></div>
+    <div class="flex justify-between gap-4"><span class="text-ink/60">Horário</span><span class="font-medium text-right">${state.time}</span></div>`;
+}
+$("#phone").addEventListener("input", e=>{
+  let v = e.target.value.replace(/\D/g,"").slice(0,11);
+  if(v.length>10) v = v.replace(/^(\d{2})(\d{5})(\d{4}).*/,"($1) $2-$3");
+  else if(v.length>6) v = v.replace(/^(\d{2})(\d{4})(\d{0,4}).*/,"($1) $2-$3");
+  else if(v.length>2) v = v.replace(/^(\d{2})(\d*)/,"($1) $2");
+  e.target.value = v;
+});
+
+/* Progresso */
+function renderProgress(){
+  $("#progress").innerHTML = stepNames.map((n,i)=>{
+    const k=i+1, done=k<state.step, cur=k===state.step;
+    return `<li class="flex-1 flex flex-col items-center gap-1.5 relative" ${cur?'aria-current="step"':''}>
+      ${k>1?`<span class="absolute top-4 right-1/2 w-full h-px ${k<=state.step?'bg-gold':'bg-sand'}"></span>`:""}
+      <span class="relative z-10 w-8 h-8 rounded-full grid place-items-center text-sm font-medium border ${done?'bg-gold border-gold text-white':cur?'bg-ink border-ink text-white':'bg-white border-sand text-ink/50'}">${done?'<i class="fa-solid fa-check text-xs"></i>':k}</span>
+      <span class="${cur?'text-ink font-medium':'text-ink/50'}">${n}</span></li>`;
+  }).join("");
+}
+
+/* Navegação */
+function showErr(m){ const e=$("#stepErr"); e.textContent=m; e.classList.remove("hidden"); }
+function hideErr(){ $("#stepErr").classList.add("hidden"); }
+function goTo(n){
+  state.step=n; hideErr();
+  document.querySelectorAll("[data-step]").forEach(p=>p.classList.toggle("hidden", Number(p.dataset.step)!==n));
+  if(n===2) buildTimes();
+  if(n===3) buildServices();
+  if(n===4) buildSummary();
+  $("#backBtn").classList.toggle("invisible", n===1);
+  $("#nextBtn").innerHTML = n===4 ? '<i class="fa-brands fa-whatsapp text-lg"></i> Confirmar agendamento' : 'Continuar <i class="fa-solid fa-arrow-right"></i>';
+  $("#nextBtn").classList.toggle("bg-[#1f8f4e]", n===4);
+  renderProgress();
+}
+$("#backBtn").addEventListener("click",()=>goTo(state.step-1));
+$("#nextBtn").addEventListener("click",()=>{
+  if(state.step===1){ if(!state.date) return showErr("Selecione uma data para continuar."); return goTo(2); }
+  if(state.step===2){ if(!state.time) return showErr("Selecione um horário para continuar."); return goTo(3); }
+  if(state.step===3){ if(!state.service) return showErr("Escolha um serviço para continuar."); return goTo(4); }
+  confirmBooking();
+});
+
+/* WhatsApp */
+function confirmBooking(){
+  const name = $("#name").value.trim().replace(/\s+/g," ");
+  const digits = $("#phone").value.replace(/\D/g,"");
+  const nameOk = name.length>=3, phoneOk = digits.length>=10 && digits.length<=11;
+  $("#nameErr").classList.toggle("hidden", nameOk);
+  $("#phoneErr").classList.toggle("hidden", phoneOk);
+  $("#name").setAttribute("aria-invalid", String(!nameOk));
+  $("#phone").setAttribute("aria-invalid", String(!phoneOk));
+  if(!nameOk || !phoneOk) return;
+  const msg =
+`Olá! Gostaria de confirmar um agendamento no ${STUDIO_NAME}.
+
+*Serviço:* ${state.service.name} (${brl(state.service.price)})
+*Data:* ${fmtLong(state.date)}
+*Horário:* ${state.time}
+*Nome:* ${name}
+*Meu WhatsApp:* ${$("#phone").value}`;
+  window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`,"_blank","noopener");
+}
+
+buildDates(); goTo(1);
+</script>
+</body>
+</html>
